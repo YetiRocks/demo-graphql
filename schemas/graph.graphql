@@ -1,0 +1,56 @@
+# GraphQL Explorer Demo Schema
+# E-commerce domain with multiple related tables
+
+# Authors write books
+type Author @table(database: "demo-graphql") @export(rest: true, graphql: true) {
+    id: ID! @primaryKey
+    name: String!
+    email: String @indexed
+    bio: String
+    country: String
+    books: [Book] @relationship(to: "authorId")
+}
+
+# Publishers publish books
+type Publisher @table(database: "demo-graphql") @export(rest: true, graphql: true) {
+    id: ID! @primaryKey
+    name: String!
+    founded: Int
+    headquarters: String
+    books: [Book] @relationship(to: "publisherId")
+}
+
+# Books are written by authors and published by publishers
+type Book @table(database: "demo-graphql") @export(rest: true, graphql: true) {
+    id: ID! @primaryKey
+    title: String!
+    isbn: String! @indexed
+    publishedYear: Int
+    genre: String @indexed
+    price: Float
+    authorId: ID! @indexed
+    publisherId: ID @indexed
+    author: Author @relationship(from: "authorId")
+    publisher: Publisher @relationship(from: "publisherId")
+    reviews: [Review] @relationship(to: "bookId")
+}
+
+# Reviews are written for books
+type Review @table(database: "demo-graphql") @export(rest: true, graphql: true) {
+    id: ID! @primaryKey
+    bookId: ID! @indexed
+    rating: Int!
+    title: String
+    content: String
+    reviewer: String
+    createdAt: String
+    book: Book @relationship(from: "bookId")
+}
+
+# Categories for organizing books
+type Category @table(database: "demo-graphql") @export(rest: true, graphql: true) {
+    id: ID! @primaryKey
+    name: String! @indexed
+    description: String
+    parentId: ID @indexed
+}

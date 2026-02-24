@@ -1,0 +1,19 @@
+/* ===== GraphQL Page ===== */
+.graphql { flex: 1; display: grid; grid-template-rows: 1fr 1fr; min-height: 0; }
+.graphql .row { display: grid; grid-template-columns: 1fr 70px 1fr; min-height: 0; border-bottom: 1px solid var(--color-border-primary); }
+.graphql .row:last-child { border-bottom: none; }
+.graphql .panel { border-right: none; }
+.graphql .panel-content { flex: 1; overflow: hidden; min-height: 0; }
+.graphql .code-editor-wrap { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.graphql .code-editor-highlight { position: absolute; inset: 0; margin: 0; padding: var(--space-6) var(--space-8); font-family: var(--font-family-mono); font-size: var(--font-size-sm); line-height: 1.7; white-space: pre-wrap; word-break: break-word; overflow: auto; background: var(--color-black); pointer-events: none; }
+.graphql .code-editor-highlight code { background: none; }
+.graphql .code-editor { position: absolute; inset: 0; width: 100%; height: 100%; background: transparent; border: none; border-radius: 0; padding: var(--space-6) var(--space-8); color: transparent; caret-color: var(--color-white); font-family: var(--font-family-mono); font-size: var(--font-size-sm); resize: none; line-height: 1.7; white-space: pre-wrap; word-break: break-word; overflow: auto; z-index: 1; }
+.graphql .code-editor:focus { outline: none; }
+.graphql .code-editor::selection { background: rgba(255, 255, 255, 0.15); }
+.graphql .results-container { background: var(--color-black); border: none; border-radius: 0; height: 100%; overflow: auto; }
+.graphql .results-pre { padding: var(--space-6) var(--space-8); margin: 0; font-family: var(--font-family-mono); font-size: var(--font-size-sm); line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+.graphql .action-column { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-3); background: var(--color-black-overlay); border-left: 1px solid var(--color-border-primary); border-right: 1px solid var(--color-border-primary); padding: var(--space-4); }
+.graphql .action-column .btn { width: 44px; height: 44px; padding: 0; border-radius: var(--radius-full); }
+.graphql .btn-subscribe.active { background: rgba(255, 0, 255, 0.3); border-color: rgba(255, 0, 255, 0.5); }
+.graphql .btn svg { width: 18px; height: 18px; }
+.graphql .btn-label { font-size: var(--font-size-xs); color: var(--color-grey); text-align: center; }

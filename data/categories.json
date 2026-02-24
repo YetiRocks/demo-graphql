@@ -1,0 +1,41 @@
+{
+  "database": "data",
+  "table": "Category",
+  "records": [
+    {
+      "id": "cat-1",
+      "name": "Fiction",
+      "description": "Narrative works of imagination"
+    },
+    {
+      "id": "cat-2",
+      "name": "Science Fiction",
+      "description": "Speculative fiction dealing with futuristic concepts",
+      "parentId": "cat-1"
+    },
+    {
+      "id": "cat-3",
+      "name": "Mystery",
+      "description": "Fiction dealing with crime and investigation",
+      "parentId": "cat-1"
+    },
+    {
+      "id": "cat-4",
+      "name": "Romance",
+      "description": "Fiction focusing on romantic relationships",
+      "parentId": "cat-1"
+    },
+    {
+      "id": "cat-5",
+      "name": "Literary Fiction",
+      "description": "Character-driven fiction with literary merit",
+      "parentId": "cat-1"
+    },
+    {
+      "id": "cat-6",
+      "name": "Magical Realism",
+      "description": "Fiction that incorporates magical elements into realistic settings",
+      "parentId": "cat-1"
+    }
+  ]
+}

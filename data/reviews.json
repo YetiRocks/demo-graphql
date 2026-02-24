@@ -1,0 +1,78 @@
+{
+  "database": "data",
+  "table": "Review",
+  "records": [
+    {
+      "id": "review-1",
+      "bookId": "book-1",
+      "rating": 5,
+      "title": "A timeless classic",
+      "content": "Witty, romantic, and surprisingly modern. Elizabeth Bennet is one of literature's most beloved heroines.",
+      "reviewer": "BookLover42",
+      "createdAt": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "review-2",
+      "bookId": "book-1",
+      "rating": 4,
+      "title": "Delightful read",
+      "content": "A wonderful exploration of love, class, and society in Regency England.",
+      "reviewer": "JaneAustenFan",
+      "createdAt": "2024-02-20T14:45:00Z"
+    },
+    {
+      "id": "review-3",
+      "bookId": "book-3",
+      "rating": 5,
+      "title": "The foundation of science fiction",
+      "content": "Asimov's vision of the future is breathtaking. The concept of psychohistory is genius.",
+      "reviewer": "SciFiReader",
+      "createdAt": "2024-01-10T09:00:00Z"
+    },
+    {
+      "id": "review-4",
+      "bookId": "book-5",
+      "rating": 5,
+      "title": "A masterpiece of mystery",
+      "content": "The ultimate locked-room mystery. Christie at her best!",
+      "reviewer": "DetectiveFan",
+      "createdAt": "2024-03-05T16:20:00Z"
+    },
+    {
+      "id": "review-5",
+      "bookId": "book-7",
+      "rating": 5,
+      "title": "Absolutely magical",
+      "content": "A sweeping epic that spans generations. Marquez creates a world you never want to leave.",
+      "reviewer": "MagicRealism",
+      "createdAt": "2024-02-28T11:15:00Z"
+    },
+    {
+      "id": "review-6",
+      "bookId": "book-9",
+      "rating": 4,
+      "title": "Melancholic beauty",
+      "content": "Murakami's prose is like music. A haunting story of love and loss.",
+      "reviewer": "TokyoDreamer",
+      "createdAt": "2024-03-10T08:30:00Z"
+    },
+    {
+      "id": "review-7",
+      "bookId": "book-4",
+      "rating": 5,
+      "title": "Visionary AI stories",
+      "content": "These stories introduced the Three Laws of Robotics. Essential sci-fi reading.",
+      "reviewer": "RoboticsEnthusiast",
+      "createdAt": "2024-01-25T13:45:00Z"
+    },
+    {
+      "id": "review-8",
+      "bookId": "book-10",
+      "rating": 5,
+      "title": "Surreal and captivating",
+      "content": "A journey through dreams and reality. Murakami's most ambitious work.",
+      "reviewer": "LiteraryExplorer",
+      "createdAt": "2024-03-15T17:00:00Z"
+    }
+  ]
+}

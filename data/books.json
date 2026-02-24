@@ -1,0 +1,106 @@
+{
+  "database": "data",
+  "table": "Book",
+  "records": [
+    {
+      "id": "book-1",
+      "title": "Pride and Prejudice",
+      "isbn": "978-0141439518",
+      "publishedYear": 1813,
+      "genre": "Romance",
+      "price": 12.99,
+      "authorId": "author-1",
+      "publisherId": "pub-1"
+    },
+    {
+      "id": "book-2",
+      "title": "Sense and Sensibility",
+      "isbn": "978-0141439662",
+      "publishedYear": 1811,
+      "genre": "Romance",
+      "price": 11.99,
+      "authorId": "author-1",
+      "publisherId": "pub-1"
+    },
+    {
+      "id": "book-3",
+      "title": "Foundation",
+      "isbn": "978-0553293357",
+      "publishedYear": 1951,
+      "genre": "Science Fiction",
+      "price": 15.99,
+      "authorId": "author-2",
+      "publisherId": "pub-2"
+    },
+    {
+      "id": "book-4",
+      "title": "I, Robot",
+      "isbn": "978-0553382563",
+      "publishedYear": 1950,
+      "genre": "Science Fiction",
+      "price": 14.99,
+      "authorId": "author-2",
+      "publisherId": "pub-2"
+    },
+    {
+      "id": "book-5",
+      "title": "Murder on the Orient Express",
+      "isbn": "978-0062693662",
+      "publishedYear": 1934,
+      "genre": "Mystery",
+      "price": 13.99,
+      "authorId": "author-3",
+      "publisherId": "pub-3"
+    },
+    {
+      "id": "book-6",
+      "title": "And Then There Were None",
+      "isbn": "978-0062073488",
+      "publishedYear": 1939,
+      "genre": "Mystery",
+      "price": 12.99,
+      "authorId": "author-3",
+      "publisherId": "pub-3"
+    },
+    {
+      "id": "book-7",
+      "title": "One Hundred Years of Solitude",
+      "isbn": "978-0060883287",
+      "publishedYear": 1967,
+      "genre": "Magical Realism",
+      "price": 16.99,
+      "authorId": "author-4",
+      "publisherId": "pub-4"
+    },
+    {
+      "id": "book-8",
+      "title": "Love in the Time of Cholera",
+      "isbn": "978-0307389732",
+      "publishedYear": 1985,
+      "genre": "Romance",
+      "price": 15.99,
+      "authorId": "author-4",
+      "publisherId": "pub-5"
+    },
+    {
+      "id": "book-9",
+      "title": "Norwegian Wood",
+      "isbn": "978-0375704024",
+      "publishedYear": 1987,
+      "genre": "Literary Fiction",
+      "price": 14.99,
+      "authorId": "author-5",
+      "publisherId": "pub-4"
+    },
+    {
+      "id": "book-10",
+      "title": "Kafka on the Shore",
+      "isbn": "978-1400079278",
+      "publishedYear": 2002,
+      "genre": "Magical Realism",
+      "price": 16.99,
+      "authorId": "author-5",
+      "publisherId": "pub-5"
+    }
+  ]
+}

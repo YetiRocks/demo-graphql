@@ -1,0 +1,36 @@
+{
+  "database": "data",
+  "table": "Publisher",
+  "records": [
+    {
+      "id": "pub-1",
+      "name": "Penguin Random House",
+      "founded": 2013,
+      "headquarters": "New York, USA"
+    },
+    {
+      "id": "pub-2",
+      "name": "HarperCollins",
+      "founded": 1989,
+      "headquarters": "New York, USA"
+    },
+    {
+      "id": "pub-3",
+      "name": "Simon & Schuster",
+      "founded": 1924,
+      "headquarters": "New York, USA"
+    },
+    {
+      "id": "pub-4",
+      "name": "Vintage Books",
+      "founded": 1954,
+      "headquarters": "New York, USA"
+    },
+    {
+      "id": "pub-5",
+      "name": "Knopf",
+      "founded": 1915,
+      "headquarters": "New York, USA"
+    }
+  ]
+}
