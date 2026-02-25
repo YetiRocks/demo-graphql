@@ -11,6 +11,9 @@ sse: true
 schemas:
   - schemas/graph.graphql
 
+resources:
+  - resources/*.rs
+
 dataLoader: data/*.json
 
 static_files:
