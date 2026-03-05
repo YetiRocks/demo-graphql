@@ -2,7 +2,7 @@
 # E-commerce domain with multiple related tables
 
 # Authors write books
-type Author @table(database: "demo-graphql") @export(rest: true, graphql: true) {
+type Author @table(database: "demo-graphql") @export(rest: true, graphql: true, public: [read]) {
     id: ID! @primaryKey
     name: String!
     email: String @indexed
@@ -12,7 +12,7 @@ type Author @table(database: "demo-graphql") @export(rest: true, graphql: true) 
 }
 
 # Publishers publish books
-type Publisher @table(database: "demo-graphql") @export(rest: true, graphql: true) {
+type Publisher @table(database: "demo-graphql") @export(rest: true, graphql: true, public: [read]) {
     id: ID! @primaryKey
     name: String!
     founded: Int
@@ -21,7 +21,7 @@ type Publisher @table(database: "demo-graphql") @export(rest: true, graphql: tru
 }
 
 # Books are written by authors and published by publishers
-type Book @table(database: "demo-graphql") @export(rest: true, graphql: true) {
+type Book @table(database: "demo-graphql") @export(rest: true, graphql: true, public: [read]) {
     id: ID! @primaryKey
     title: String!
     isbn: String! @indexed
@@ -36,7 +36,7 @@ type Book @table(database: "demo-graphql") @export(rest: true, graphql: true) {
 }
 
 # Reviews are written for books
-type Review @table(database: "demo-graphql") @export(rest: true, graphql: true) {
+type Review @table(database: "demo-graphql") @export(rest: true, graphql: true, public: [read]) {
     id: ID! @primaryKey
     bookId: ID! @indexed
     rating: Int!
@@ -48,7 +48,7 @@ type Review @table(database: "demo-graphql") @export(rest: true, graphql: true) 
 }
 
 # Categories for organizing books
-type Category @table(database: "demo-graphql") @export(rest: true, graphql: true) {
+type Category @table(database: "demo-graphql") @export(rest: true, graphql: true, public: [read]) {
     id: ID! @primaryKey
     name: String! @indexed
     description: String
