@@ -1,5 +1,6 @@
 import Footer from './components/Footer'
 import { GraphqlPage } from './pages/GraphqlPage'
+import './theme'
 
 export default function App() {
   return (
