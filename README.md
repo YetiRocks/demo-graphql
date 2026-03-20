@@ -58,12 +58,6 @@ name: "GraphQL Demo"
 app_id: "demo-graphql"
 version: "1.0.0"
 description: "Interactive GraphQL explorer with editable queries, mutations, and live SSE subscriptions"
-enabled: true
-rest: true
-graphql: true
-ws: true
-sse: true
-
 schemas:
   - schemas/graph.graphql
 
