@@ -1,5 +1,6 @@
 name: "GraphQL Demo"
 app_id: "demo-graphql"
+customer_id: "yeti"
 version: "1.0.0"
 description: "Interactive GraphQL explorer with editable queries, mutations, and live SSE subscriptions"
 schemas:
