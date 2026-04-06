@@ -32,8 +32,6 @@ interface StreamController {
   close: () => void
 }
 
-// Get the base URL for API calls
-const BASE_URL = window.location.origin + '/demo-graphql'
 
 // Default query and mutation templates
 const DEFAULT_QUERY = `{
@@ -199,7 +197,7 @@ export function GraphqlPage() {
   // Run a GraphQL query
   const runQuery = useCallback(async () => {
     try {
-      const response = await fetch(`${BASE_URL}/graphql`, {
+      const response = await fetch(`${RESOURCE_ROUTE}/graphql`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: queryText })
@@ -228,7 +226,7 @@ export function GraphqlPage() {
   // Run a GraphQL mutation
   const runMutation = useCallback(async () => {
     try {
-      const response = await fetch(`${BASE_URL}/graphql`, {
+      const response = await fetch(`${RESOURCE_ROUTE}/graphql`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: mutationText })
@@ -282,7 +280,7 @@ export function GraphqlPage() {
     const subscriptionQuery = `subscription { ${tableName} { id name } }`
 
     try {
-      const response = await fetch(`${BASE_URL}/graphql`, {
+      const response = await fetch(`${RESOURCE_ROUTE}/graphql`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

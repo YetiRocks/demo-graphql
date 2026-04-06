@@ -4,13 +4,14 @@ customer_id: "yeti"
 version: "1.0.0"
 description: "Interactive GraphQL explorer with editable queries, mutations, and live SSE subscriptions"
 schemas:
-  - schemas/graph.graphql
+  path: schemas/graph.graphql
 
 dataLoader: data/*.json
 
-static_files:
+static:
   path: web
+  route: /
   spa: true
   build:
-    sourceDir: source
+    source: source
     command: npm run build
