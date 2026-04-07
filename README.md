@@ -47,12 +47,12 @@ Restart yeti. The frontend builds automatically on first load (`npm run build` v
 
 ### 2. Open the Explorer
 
-Navigate to [https://localhost/demo-graphql/](https://localhost/demo-graphql/) in your browser. The two-panel IDE loads with a default query pre-filled.
+Navigate to [https://localhost:9996/demo-graphql/](https://localhost:9996/demo-graphql/) in your browser. The two-panel IDE loads with a default query pre-filled.
 
 ### 3. Run a Query (curl)
 
 ```bash
-curl -s -X POST https://localhost/demo-graphql/graphql \
+curl -s -X POST https://localhost:9996/demo-graphql/graphql \
   -H "Content-Type: application/json" \
   -d '{"query": "{ Author(id: \"author-1\") { id name bio books { id title publishedYear } } }"}' | jq
 ```
@@ -85,7 +85,7 @@ Response:
 ### 4. Run a Mutation (curl)
 
 ```bash
-curl -s -X POST https://localhost/demo-graphql/graphql \
+curl -s -X POST https://localhost:9996/demo-graphql/graphql \
   -H "Content-Type: application/json" \
   -d '{"query": "mutation { updateAuthor(id: \"author-1\", data: { bio: \"English novelist and one of the most widely read writers in English literature.\" }) { id name bio } }"}' | jq
 ```
@@ -106,7 +106,7 @@ Response:
 ### 5. Query with Nested Relationships
 
 ```bash
-curl -s -X POST https://localhost/demo-graphql/graphql \
+curl -s -X POST https://localhost:9996/demo-graphql/graphql \
   -H "Content-Type: application/json" \
   -d '{"query": "{ Book(id: \"book-1\") { title isbn price author { name country } publisher { name headquarters } reviews { rating title reviewer } } }"}' | jq
 ```
@@ -147,7 +147,7 @@ Response:
 ### 6. List All Books via REST
 
 ```bash
-curl -s "https://localhost/demo-graphql/Book?limit=5" | jq
+curl -s "https://localhost:9996/demo-graphql/Book?limit=5" | jq
 ```
 
 Response:
@@ -180,10 +180,10 @@ Response:
 
 ```bash
 # In one terminal — subscribe to Author changes
-curl -N "https://localhost/demo-graphql/Author?stream=sse"
+curl -N "https://localhost:9996/demo-graphql/Author?stream=sse"
 
 # In another terminal — trigger an update
-curl -s -X POST https://localhost/demo-graphql/graphql \
+curl -s -X POST https://localhost:9996/demo-graphql/graphql \
   -H "Content-Type: application/json" \
   -d '{"query": "mutation { updateAuthor(id: \"author-2\", data: { bio: \"Updated bio for Asimov\" }) { id name } }"}'
 ```
