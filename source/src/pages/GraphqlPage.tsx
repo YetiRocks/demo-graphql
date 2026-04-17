@@ -197,7 +197,7 @@ export function GraphqlPage() {
   // Run a GraphQL query
   const runQuery = useCallback(async () => {
     try {
-      const response = await fetch(`${RESOURCE_ROUTE}/graphql`, {
+      const response = await fetch(`${__STATIC_ROOT__}/${__RESOURCES_ROOT__}/graphql`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: queryText })
@@ -226,7 +226,7 @@ export function GraphqlPage() {
   // Run a GraphQL mutation
   const runMutation = useCallback(async () => {
     try {
-      const response = await fetch(`${RESOURCE_ROUTE}/graphql`, {
+      const response = await fetch(`${__STATIC_ROOT__}/${__RESOURCES_ROOT__}/graphql`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: mutationText })
@@ -280,7 +280,7 @@ export function GraphqlPage() {
     const subscriptionQuery = `subscription { ${tableName} { id name } }`
 
     try {
-      const response = await fetch(`${RESOURCE_ROUTE}/graphql`, {
+      const response = await fetch(`${__STATIC_ROOT__}/${__RESOURCES_ROOT__}/graphql`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
