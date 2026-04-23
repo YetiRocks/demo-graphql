@@ -1,0 +1,13 @@
+[package]
+name = "demo-graphql"
+edition = "2024"
+description = "GraphQL Demo"
+version = "1.0.0"
+
+[package.metadata.app]
+customer_id = "yeti"
+schemas = "schemas/graph.graphql"
+static = { path = "web", root = "/", source = "source", spa = true, build = "npm install && npm run build" }
+loaders = { data = "data/*.json" }
+
+[dependencies]
