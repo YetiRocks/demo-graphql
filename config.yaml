@@ -1,0 +1,16 @@
+name: "GraphQL Demo"
+app_id: "demo-graphql"
+customer_id: "yeti"
+version: "1.0.0"
+description: "GraphQL Demo"
+
+schemas:
+  path: schemas/graph.graphql
+
+static:
+  path: web
+  root: /
+  spa: true
+  build:
+    source: source
+    command: npm install && npm run build
