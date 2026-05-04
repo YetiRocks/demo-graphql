@@ -1,26 +1,5 @@
-import { useState, useRef, useCallback, useEffect } from 'react'
-import hljs from 'highlight.js/lib/core'
-import { syntaxHighlight } from '../utils.ts'
-
-// Register GraphQL language for highlight.js
-hljs.registerLanguage('graphql', () => ({
-  name: 'GraphQL',
-  aliases: ['gql'],
-  keywords: {
-    keyword: 'type input enum union interface implements extend schema directive scalar fragment query mutation subscription on',
-    literal: 'true false null',
-  },
-  contains: [
-    hljs.HASH_COMMENT_MODE,
-    hljs.QUOTE_STRING_MODE,
-    hljs.NUMBER_MODE,
-    { className: 'meta', begin: '\\@[a-zA-Z_]\\w*' },
-    { className: 'type', begin: '\\b(ID|String|Int|Float|Boolean|Date)\\b' },
-    { className: 'attr', begin: '[a-zA-Z_]\\w*(?=\\s*:)' },
-    { className: 'punctuation', begin: '[!{}()\\[\\]:=|]' },
-    { className: 'variable', begin: '\\$[a-zA-Z_]\\w*' },
-  ],
-}))
+import { useState, useRef, useCallback } from 'react'
+import CodeBlock from '../components/CodeBlock'
 
 // Types
 interface GraphQLResponse {
@@ -88,39 +67,16 @@ function SubscribeIcon() {
   )
 }
 
-// Highlighted code editor — transparent textarea over a highlighted pre
+// Editable GraphQL editor — backed by the shared CodeBlock component.
 function CodeEditor({ value, onChange }: { value: string; onChange: (v: string) => void }) {
-  const codeRef = useRef<HTMLElement>(null)
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
-  const preRef = useRef<HTMLPreElement>(null)
-
-  useEffect(() => {
-    if (codeRef.current) {
-      codeRef.current.textContent = value
-      codeRef.current.removeAttribute('data-highlighted')
-      hljs.highlightElement(codeRef.current)
-    }
-  }, [value])
-
-  const handleScroll = useCallback(() => {
-    if (textareaRef.current && preRef.current) {
-      preRef.current.scrollTop = textareaRef.current.scrollTop
-      preRef.current.scrollLeft = textareaRef.current.scrollLeft
-    }
-  }, [])
-
   return (
-    <div className="code-editor-wrap">
-      <pre ref={preRef} className="code-editor-highlight"><code ref={codeRef} className="language-graphql">{value}</code></pre>
-      <textarea
-        ref={textareaRef}
-        className="code-editor"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onScroll={handleScroll}
-        spellCheck={false}
-      />
-    </div>
+    <CodeBlock
+      value={value}
+      language="graphql"
+      editable
+      onChange={onChange}
+      className="graphql-editor"
+    />
   )
 }
 
@@ -157,22 +113,21 @@ interface ResultsPanelProps {
 function ResultsPanel({ result, badge, badgeSuccess, emptyMessage }: ResultsPanelProps) {
   return (
     <Panel title="Results" badge={badge} badgeSuccess={badgeSuccess}>
-      <div className="results-container">
-        {result === null ? (
-          <EmptyState message={emptyMessage} />
-        ) : result.errors ? (
-          <pre className="results-pre error-text">
-            {JSON.stringify(result.errors, null, 2)}
-          </pre>
-        ) : (
-          <pre
-            className="results-pre"
-            dangerouslySetInnerHTML={{
-              __html: syntaxHighlight(JSON.stringify(result.data, null, 2))
-            }}
-          />
-        )}
-      </div>
+      {result === null ? (
+        <EmptyState message={emptyMessage} />
+      ) : result.errors ? (
+        <CodeBlock
+          value={JSON.stringify(result.errors, null, 2)}
+          language="json"
+          className="graphql-results error-text"
+        />
+      ) : (
+        <CodeBlock
+          value={JSON.stringify(result.data, null, 2)}
+          language="json"
+          className="graphql-results"
+        />
+      )}
     </Panel>
   )
 }
