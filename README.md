@@ -393,34 +393,27 @@ Author --< Book >-- Publisher
 
 ## Configuration
 
-### config.yaml
+App configuration lives in `Cargo.toml` under `[package.metadata.app]`. There is no separate `config.yaml` or `services.yaml`.
 
-```yaml
-name: "GraphQL Demo"
-app_id: "demo-graphql"
-version: "1.0.0"
-description: "Interactive GraphQL explorer with editable queries, mutations, and live SSE subscriptions"
-schemas:
-  path: schemas/graph.graphql
+```toml
+[package]
+name = "demo-graphql"
+version = "1.0.0"
+description = "Interactive GraphQL explorer with editable queries, mutations, and live SSE subscriptions"
 
-dataLoader: data/*.json
-
-static:
-  path: web
-  route: /
-  spa: true
-  build:
-    source: source
-    command: npm run build
+[package.metadata.app]
+schemas = "schemas/graph.graphql"
+dataLoader = "data/*.json"
+static = { path = "web", source = "source", spa = true, build = "npm install && npm run build" }
 ```
 
 | Key | Value | Purpose |
 |-----|-------|---------|
 | `schemas` | `schemas/graph.graphql` | Single schema defining all 5 tables with relationships |
 | `dataLoader` | `data/*.json` | Loads seed data from 5 JSON files on startup |
-| `static_files.path` | `web` | Serves built React app from `web/` directory |
-| `static_files.spa` | `true` | SPA mode: serves `index.html` for all unmatched routes |
-| `static_files.build` | `source` -> `npm run build` | Auto-builds frontend from `source/` on first load |
+| `static.path` | `web` | Serves built React app from `web/` directory |
+| `static.spa` | `true` | SPA mode: serves `index.html` for all unmatched routes |
+| `static.source` / `static.build` | `source` -> `npm install && npm run build` | Auto-builds frontend from `source/` on first load |
 
 ### Schema Directives
 
@@ -439,7 +432,7 @@ static:
 
 ```
 demo-graphql/
-+-- config.yaml              # App configuration
++-- Cargo.toml               # App configuration under [package.metadata.app]
 +-- schemas/
 |   +-- graph.graphql        # Author, Publisher, Book, Review, Category
 +-- data/
@@ -454,17 +447,38 @@ demo-graphql/
     +-- vite.config.ts
     +-- tsconfig.json
     +-- src/
-        +-- main.tsx          # App entry point
-        +-- App.tsx           # Layout with nav + GraphQL page
-        +-- theme.ts          # Theme configuration
-        +-- utils.ts          # JSON syntax highlighting utility
-        +-- index.css         # Global styles
-        +-- yeti.css          # Yeti design system styles
+        +-- main.tsx              # App entry point
+        +-- App.tsx               # Thin shell -- wires auth gate + page
+        +-- api.ts                # Fetch helpers
+        +-- types.ts              # Shared TypeScript types
+        +-- utils.ts              # JSON syntax highlighting utility
+        +-- components/
+        |   +-- Footer.tsx        # Shared UI primitives
+        +-- hooks/
+        |   +-- useAuth.ts        # Auth state hook (template)
         +-- pages/
         |   +-- GraphqlPage.tsx   # Query/mutation/subscription IDE
-        +-- components/
-            +-- Footer.tsx    # Footer component
+        |   +-- Login.tsx         # Configurable login page (template)
+        +-- styles/
+            +-- _vars.css         # Per-app brand colors and shared tokens
+            +-- yeti.css          # Canonical Yeti stylesheet
+            +-- index.css         # App-specific overrides
 ```
+
+The `src/` layout is the standard yeti UI app structure: a thin `App.tsx`, root utility modules (`api.ts`, `types.ts`, `utils.ts`), shared UI in `components/`, hooks in `hooks/`, pages in `pages/` (including the bundled `Login.tsx`), and stylesheets in `styles/`. `yeti.css` is the canonical stylesheet shared across all yeti apps; `_vars.css` holds this app's brand tokens; `index.css` carries app-specific overrides.
+
+## Authentication
+
+All tables declare `public: [read]`, so queries and SSE subscriptions are open. To require login on writes -- or gate the explorer entirely -- declare a `[package.metadata.auth]` section in `Cargo.toml` (methods, JWT, OAuth providers, role rules). The bundled `Login.tsx` page and `useAuth` hook can wrap the IDE with three lines:
+
+```tsx
+const auth = useAuth()
+if (auth === null) return <Loading/>
+if (!auth) return <Login/>
+return <GraphqlPage/>
+```
+
+The `Login` component takes optional `logo`, `title`, `subtitle`, and `redirectUri` props for branding.
 
 ---
 
