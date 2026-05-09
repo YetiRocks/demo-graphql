@@ -1,5 +1,8 @@
 import { useState, useRef, useCallback } from 'react'
+import { EditorView } from '@codemirror/view'
 import CodeBlock from '../components/CodeBlock'
+
+const wrapExt = [EditorView.lineWrapping]
 
 // Types
 interface GraphQLResponse {
@@ -76,6 +79,7 @@ function CodeEditor({ value, onChange }: { value: string; onChange: (v: string) 
       editable
       onChange={onChange}
       className="graphql-editor"
+      extensions={wrapExt}
     />
   )
 }
@@ -120,12 +124,14 @@ function ResultsPanel({ result, badge, badgeSuccess, emptyMessage }: ResultsPane
           value={JSON.stringify(result.errors, null, 2)}
           language="json"
           className="graphql-results error-text"
+          extensions={wrapExt}
         />
       ) : (
         <CodeBlock
           value={JSON.stringify(result.data, null, 2)}
           language="json"
           className="graphql-results"
+          extensions={wrapExt}
         />
       )}
     </Panel>
