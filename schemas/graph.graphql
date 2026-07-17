@@ -2,7 +2,7 @@
 # E-commerce domain with multiple related tables
 
 # Authors write books
-type Author @table(database: "demo-graphql") @distribute @export(rest: true, graphql: true) @access(public: [read]) {
+type Author @table(database: "demo-graphql") @distribute @export(rest: true, graphql: true) @access(public: [read, update]) {
     id: ID! @primaryKey
     name: String!
     email: String @indexed
