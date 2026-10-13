@@ -1,0 +1,548 @@
+# demo-graphql: Author, Publisher, Book, Review, Category over REST, GraphQL
+# and MCP. Ids are the seed's (data/*.json). Author is the only public-update
+# table; the rest are public read.
+
+
+[[case]]
+name = "list Author"
+protocol = "http"
+path = "/api/author/?limit=2"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+type = "string"
+
+
+[[case]]
+name = "get Author author-1"
+protocol = "http"
+path = "/api/author/author-1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "object"
+[[case.expect.json]]
+pointer = "/id"
+equals = "author-1"
+[[case.expect.json]]
+pointer = "/name"
+equals = "Jane Austen"
+
+
+[[case]]
+name = "absent Author row is a problem 404"
+protocol = "http"
+path = "/api/author/yt-absent-{run}"
+[case.expect]
+status = 404
+content_type = "application/problem+json"
+shape = "problem"
+
+
+[[case]]
+name = "GraphQL list Author"
+protocol = "graphql"
+query = "{ Author(limit: 1) { id } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Author"
+type = "array"
+[[case.expect.json]]
+pointer = "/data/Author/0/id"
+type = "string"
+
+
+[[case]]
+name = "list Publisher"
+protocol = "http"
+path = "/api/publisher/?limit=2"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+type = "string"
+
+
+[[case]]
+name = "get Publisher pub-1"
+protocol = "http"
+path = "/api/publisher/pub-1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "object"
+[[case.expect.json]]
+pointer = "/id"
+equals = "pub-1"
+[[case.expect.json]]
+pointer = "/name"
+equals = "Penguin Random House"
+
+
+[[case]]
+name = "absent Publisher row is a problem 404"
+protocol = "http"
+path = "/api/publisher/yt-absent-{run}"
+[case.expect]
+status = 404
+content_type = "application/problem+json"
+shape = "problem"
+
+
+[[case]]
+name = "GraphQL list Publisher"
+protocol = "graphql"
+query = "{ Publisher(limit: 1) { id } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Publisher"
+type = "array"
+[[case.expect.json]]
+pointer = "/data/Publisher/0/id"
+type = "string"
+
+
+[[case]]
+name = "list Book"
+protocol = "http"
+path = "/api/book/?limit=2"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+type = "string"
+
+
+[[case]]
+name = "get Book book-1"
+protocol = "http"
+path = "/api/book/book-1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "object"
+[[case.expect.json]]
+pointer = "/id"
+equals = "book-1"
+[[case.expect.json]]
+pointer = "/title"
+equals = "Pride and Prejudice"
+
+
+[[case]]
+name = "absent Book row is a problem 404"
+protocol = "http"
+path = "/api/book/yt-absent-{run}"
+[case.expect]
+status = 404
+content_type = "application/problem+json"
+shape = "problem"
+
+
+[[case]]
+name = "GraphQL list Book"
+protocol = "graphql"
+query = "{ Book(limit: 1) { id } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Book"
+type = "array"
+[[case.expect.json]]
+pointer = "/data/Book/0/id"
+type = "string"
+
+
+[[case]]
+name = "list Review"
+protocol = "http"
+path = "/api/review/?limit=2"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+type = "string"
+
+
+[[case]]
+name = "get Review review-1"
+protocol = "http"
+path = "/api/review/review-1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "object"
+[[case.expect.json]]
+pointer = "/id"
+equals = "review-1"
+[[case.expect.json]]
+pointer = "/rating"
+equals = 5
+
+
+[[case]]
+name = "absent Review row is a problem 404"
+protocol = "http"
+path = "/api/review/yt-absent-{run}"
+[case.expect]
+status = 404
+content_type = "application/problem+json"
+shape = "problem"
+
+
+[[case]]
+name = "GraphQL list Review"
+protocol = "graphql"
+query = "{ Review(limit: 1) { id } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Review"
+type = "array"
+[[case.expect.json]]
+pointer = "/data/Review/0/id"
+type = "string"
+
+
+[[case]]
+name = "list Category"
+protocol = "http"
+path = "/api/category/?limit=2"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/id"
+type = "string"
+
+
+[[case]]
+name = "get Category cat-1"
+protocol = "http"
+path = "/api/category/cat-1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "object"
+[[case.expect.json]]
+pointer = "/id"
+equals = "cat-1"
+[[case.expect.json]]
+pointer = "/name"
+equals = "Fiction"
+
+
+[[case]]
+name = "absent Category row is a problem 404"
+protocol = "http"
+path = "/api/category/yt-absent-{run}"
+[case.expect]
+status = 404
+content_type = "application/problem+json"
+shape = "problem"
+
+
+[[case]]
+name = "GraphQL list Category"
+protocol = "graphql"
+query = "{ Category(limit: 1) { id } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Category"
+type = "array"
+[[case.expect.json]]
+pointer = "/data/Category/0/id"
+type = "string"
+
+
+[[case]]
+name = "GraphQL Author resolves books"
+protocol = "graphql"
+query = "{ Author(limit: 1) { id name books { title } } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Author/0/books/0/title"
+type = "string"
+
+
+[[case]]
+name = "GraphQL Book resolves author, publisher and reviews"
+protocol = "graphql"
+query = "{ Book(limit: 1) { id title author { name } publisher { name } reviews { rating } } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Book/0/author/name"
+equals = "Jane Austen"
+[[case.expect.json]]
+pointer = "/data/Book/0/publisher/name"
+equals = "Penguin Random House"
+[[case.expect.json]]
+pointer = "/data/Book/0/reviews/0/rating"
+type = "integer"
+
+
+[[case]]
+name = "GraphQL Review resolves its book"
+protocol = "graphql"
+query = "{ Review(limit: 1) { id rating book { title } } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Review/0/book/title"
+type = "string"
+
+
+[[case]]
+name = "GraphQL Book by id"
+protocol = "graphql"
+query = "{ Book(id: \"book-1\") { id title } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Book/id"
+equals = "book-1"
+[[case.expect.json]]
+pointer = "/data/Book/title"
+equals = "Pride and Prejudice"
+
+
+[[case]]
+name = "GraphQL Book filtered by genre"
+protocol = "graphql"
+query = "{ Book(genre: \"Romance\") { id } }"
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Book"
+type = "array"
+[[case.expect.json]]
+pointer = "/data/Book/0/id"
+type = "string"
+
+
+[[case]]
+name = "GraphQL variables"
+protocol = "graphql"
+query = "query($id: ID!) { Book(id: $id) { id } }"
+variables = { id = "book-2" }
+[case.expect]
+status = 200
+content_type = "json"
+[[case.expect.json]]
+pointer = "/data/Book/id"
+equals = "book-2"
+
+
+[[case]]
+name = "GraphQL unknown field is an error"
+protocol = "graphql"
+query = "{ yt_nope }"
+[case.expect]
+status = 400
+content_type = "json"
+[[case.expect.json]]
+pointer = "/errors/0/message"
+type = "string"
+
+
+[[case]]
+name = "REST filter by genre"
+protocol = "http"
+path = "/api/book/?genre==Romance&limit=1"
+[case.expect]
+status = 200
+content_type = "json"
+shape = "array"
+[[case.expect.json]]
+pointer = "/0/genre"
+equals = "Romance"
+
+
+[[case]]
+name = "MCP initialize"
+protocol = "mcp"
+rpc = "initialize"
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/result/serverInfo/name"
+type = "string"
+[[case.expect.json]]
+pointer = "/result/protocolVersion"
+type = "string"
+
+
+[[case]]
+name = "MCP tools/list names the table tools"
+protocol = "mcp"
+rpc = "tools/list"
+[case.expect]
+status = 200
+contains = "author_list"
+[[case.expect.json]]
+pointer = "/result/tools"
+type = "array"
+[[case.expect.json]]
+pointer = "/result/tools/0/name"
+type = "string"
+
+
+[[case]]
+name = "MCP tools/call author_list"
+protocol = "mcp"
+rpc = "tools/call"
+params = { name = "author_list", arguments = { limit = 1 } }
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/result/isError"
+equals = false
+[[case.expect.json]]
+pointer = "/result/content/0/type"
+equals = "text"
+[[case.expect.json]]
+pointer = "/result/content/0/text"
+type = "string"
+
+
+[[case]]
+name = "MCP unknown method is a JSON-RPC error"
+protocol = "mcp"
+rpc = "no/such/method"
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/error/code"
+equals = -32601
+
+
+[[case]]
+name = "MCP tools/call publisher_list"
+protocol = "mcp"
+rpc = "tools/call"
+params = { name = "publisher_list", arguments = { limit = 1 } }
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/result/isError"
+equals = false
+[[case.expect.json]]
+pointer = "/result/content/0/text"
+type = "string"
+
+
+[[case]]
+name = "MCP tools/call book_list"
+protocol = "mcp"
+rpc = "tools/call"
+params = { name = "book_list", arguments = { limit = 1 } }
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/result/isError"
+equals = false
+[[case.expect.json]]
+pointer = "/result/content/0/text"
+type = "string"
+
+
+[[case]]
+name = "MCP tools/call review_list"
+protocol = "mcp"
+rpc = "tools/call"
+params = { name = "review_list", arguments = { limit = 1 } }
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/result/isError"
+equals = false
+[[case.expect.json]]
+pointer = "/result/content/0/text"
+type = "string"
+
+
+[[case]]
+name = "MCP tools/call category_list"
+protocol = "mcp"
+rpc = "tools/call"
+params = { name = "category_list", arguments = { limit = 1 } }
+[case.expect]
+status = 200
+[[case.expect.json]]
+pointer = "/result/isError"
+equals = false
+[[case.expect.json]]
+pointer = "/result/content/0/text"
+type = "string"
+
+
+[[case]]
+name = "SSE opens on Book"
+protocol = "sse"
+path = "/api/book?stream=sse"
+
+
+[[case]]
+name = "gRPC-Web opens on Book"
+protocol = "grpcweb"
+path = "/api/book?stream=grpcweb"
+
+
+[[case]]
+name = "WebSocket opens on Book"
+protocol = "ws"
+path = "/api/book"
+
+
+[[case]]
+name = "MQTT subscribes to Book"
+protocol = "mqtt"
+table = "Book"
+
+
+[[case]]
+name = "anonymous create on Book is refused (public grant is read)"
+protocol = "http"
+method = "POST"
+path = "/api/book"
+json = { id = "yt-{run}", title = "x", isbn = "x", authorId = "author-1" }
+[case.expect]
+status = 401
+content_type = "application/problem+json"
+shape = "problem"
+
+
+[[case]]
+name = "anonymous delete on Book is refused"
+protocol = "http"
+method = "DELETE"
+path = "/api/book/book-1"
+[case.expect]
+status = 401
+content_type = "application/problem+json"
+shape = "problem"
