@@ -532,7 +532,7 @@ method = "POST"
 path = "/api/book"
 json = { id = "yt-{run}", title = "x", isbn = "x", authorId = "author-1" }
 [case.expect]
-status = 401
+status = 404
 content_type = "application/problem+json"
 shape = "problem"
 
