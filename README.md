@@ -285,15 +285,15 @@ Every `@export(rest: true)` table also gets full REST endpoints:
 
 | Endpoint | Methods | Description |
 |----------|---------|-------------|
-| `/demo-graphql/Author` | GET, POST | List/create authors |
+| `/demo-graphql/Author/` | GET, POST | List/create authors |
 | `/demo-graphql/Author/{id}` | GET, PUT, DELETE | Read/update/delete an author |
-| `/demo-graphql/Publisher` | GET, POST | List/create publishers |
+| `/demo-graphql/Publisher/` | GET, POST | List/create publishers |
 | `/demo-graphql/Publisher/{id}` | GET, PUT, DELETE | Read/update/delete a publisher |
-| `/demo-graphql/Book` | GET, POST | List/create books |
+| `/demo-graphql/Book/` | GET, POST | List/create books |
 | `/demo-graphql/Book/{id}` | GET, PUT, DELETE | Read/update/delete a book |
-| `/demo-graphql/Review` | GET, POST | List/create reviews |
+| `/demo-graphql/Review/` | GET, POST | List/create reviews |
 | `/demo-graphql/Review/{id}` | GET, PUT, DELETE | Read/update/delete a review |
-| `/demo-graphql/Category` | GET, POST | List/create categories |
+| `/demo-graphql/Category/` | GET, POST | List/create categories |
 | `/demo-graphql/Category/{id}` | GET, PUT, DELETE | Read/update/delete a category |
 
 ### Public Read Access
